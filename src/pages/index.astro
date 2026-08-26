@@ -1,0 +1,72 @@
+---
+import { actions } from "astro:actions";
+
+// The form posts to the action; on the next render its result is waiting here.
+const result = Astro.getActionResult(actions.sendEmail);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mailtea + Astro</title>
+  </head>
+  <body>
+    <main>
+      <h1>Send an email with Mailtea</h1>
+      <p>
+        This form posts to an Astro Action. The same send is also exposed as a
+        JSON endpoint at <code>POST /api/send</code>.
+      </p>
+
+      <!-- Passing the action itself sets both the URL and the method. -->
+      <form method="POST" action={actions.sendEmail}>
+        <label>
+          To
+          <input type="email" name="to" required placeholder="reader@yourdomain.com" />
+        </label>
+        <label>
+          Subject
+          <input type="text" name="subject" required value="Hello from Astro" />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="4" required>Sent with Mailtea.</textarea>
+        </label>
+        <button type="submit">Send</button>
+      </form>
+
+      {result?.error && <p class="error">{result.error.message}</p>}
+      {result?.data && <p class="ok">Sent. Email id: <code>{result.data.id}</code></p>}
+    </main>
+
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        margin: 0 auto;
+        max-width: 34rem;
+        padding: 3rem 1.5rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      input,
+      textarea {
+        box-sizing: border-box;
+        display: block;
+        font: inherit;
+        margin-top: 0.25rem;
+        padding: 0.5rem;
+        width: 100%;
+      }
+      .error {
+        color: #b42318;
+      }
+      .ok {
+        color: #067647;
+      }
+    </style>
+  </body>
+</html>

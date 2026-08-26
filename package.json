@@ -1,0 +1,19 @@
+{
+  "name": "mailtea-astro-example",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "node --env-file-if-exists=.env ./dist/server/entry.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.5.5",
+    "astro": "^5.18.2",
+    "mailtea-sdk": "0.11.0"
+  }
+}
