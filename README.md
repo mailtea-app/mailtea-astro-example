@@ -53,7 +53,7 @@ validation, and the status codes — and nothing about it is Astro-specific.
 ## What this example covers
 
 - Sending with the [`mailtea-sdk`](https://www.npmjs.com/package/mailtea-sdk)
-  Node SDK, pointed at production or a local API through one `baseUrl` option
+  Node SDK
 - An Astro Action that a plain HTML form posts to, with Zod input validation
 - A framework-agnostic `POST /api/send` JSON endpoint
 - Server-only secrets through `astro:env`, read at runtime rather than baked

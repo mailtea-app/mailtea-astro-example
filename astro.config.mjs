@@ -24,11 +24,11 @@ export default defineConfig({
     schema: {
       // `access: "secret"` does two things that matter here: the value never
       // reaches the client bundle, and it is read from the environment at
-      // runtime rather than inlined at build time — so one build can run
-      // against production, a self-hosted instance, or a local API.
+      // runtime rather than inlined at build time, so one build runs in every
+      // environment.
       MAILTEA_API_KEY: envField.string({ context: "server", access: "secret" }),
       MAILTEA_FROM: envField.string({ context: "server", access: "secret" }),
-      // Only set for local dev or a self-hosted Mailtea. Unset in production.
+      // Optional override of the API host. Unset, the SDK uses https://api.mailtea.app.
       MAILTEA_API_BASE_URL: envField.string({
         context: "server",
         access: "secret",

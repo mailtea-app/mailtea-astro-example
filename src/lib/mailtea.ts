@@ -31,7 +31,7 @@ export async function sendMessage({ to, subject, message }: Message): Promise<st
   // Cheap to construct — it holds a key and a base URL, opens nothing, and
   // starts no connection — so there is no reason to hoist it to module scope.
   const mailtea = new Mailtea(MAILTEA_API_KEY, {
-    // Only needed for local dev or a self-hosted Mailtea. Omit in production.
+    // Optional override of the API host. Unset, the SDK uses https://api.mailtea.app.
     baseUrl: MAILTEA_API_BASE_URL
   });
 
